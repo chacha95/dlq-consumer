@@ -4,7 +4,7 @@ import traceback
 from confluent_kafka import Consumer
 
 # config
-BOOTSTRAP_SERVERS = "localhost:19092"
+BOOTSTRAP_SERVERS = "192.168.10.243:19092"
 topic = "dlq"
 
 c = Consumer(
@@ -18,7 +18,7 @@ c = Consumer(
 c.subscribe([topic])
 
 while True:
-    msg = c.poll(1.0)
+    msg = c.poll(0.1)
     if msg is None:
         continue
     if msg.error():
